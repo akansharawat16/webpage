@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>kushel digital - Landing Page</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    html, body {
+      height: 100%;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    /* Loading Page */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    /* CSS Spinner Logo */
+    .loading-logo {
+      width: 60px;
+      height: 60px;
+      border: 8px solid #f3f3f3;
+      border-top: 8px solid #0493fc;
+      border-radius: 30%;
+      animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Top Bar */
+    .top-bar {
+      background-color: white;
+      padding: 10px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      position: relative;
+    }
+
+    /* Section: Hero */
+    .hero-section {
+      background-color: #0493fc;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 60px 80px;
+      height: 100vh;
+      flex-wrap: wrap;
+      transition: all 0.3s ease;
+    }
+
+    .hero-left {
+      flex: 1;
+      max-width: 50%;
+      margin-right: 40px;
+    }
+
+    .hero-left h1 {
+      font-size: 38px;
+      margin-bottom: 20px;
+    }
+
+    .hero-left p {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .features div {
+      flex: 1 1 45%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn {
+      padding: 12px 25px;
+      background: white;
+      border: none;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      color: black;
+    }
+
+    .hero-right {
+      background-color: white;
+      color: #333;
+      border-radius: 10px;
+      padding: 30px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .hero-right h3 {
+      margin-bottom: 20px;
+      font-size: 20px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: none;
+      border-bottom: 1px solid gray;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background-color: #0047ff;
+      color: white;
+      padding: 10px;
+      border-radius: 25px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    /* Section: Services */
+    .service-section {
+      background-color: #f9f9f9;
+      padding: 80px 40px;
+      min-height: 100vh;
+      text-align: center;
+      border-top: 4px solid #0493fc; /* Add line under */
+    }
+
+    .service-section h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .service-section p {
+      color: #666;
+      margin-bottom: 40px;
+    }
+
+    .yellow-box {
+      background-color: #fbdc52;
+      border-radius: 50px;
+      padding: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .service-card {
+      background-color: white;
+      padding: 20px;
+      border-radius: 15px;
+      width: 250px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .service-card i {
+      font-size: 30px;
+      color: #007bff;
+      margin-bottom: 10px;
+    }
+
+    /* Section: Technologies */
+    .tech-section {
+      background-color: #fff;
+      padding: 80px 40px;
+      min-height: 100vh;
+      text-align: center;
+      background-image: url('techn.png.png');
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+    }
+
+    .tech-section h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .tech-section p {
+      color: #666;
+      margin-bottom: 40px;
+    }
+
+    .tech-icons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .tech-icons .tech-item {
+      text-align: center;
+    }
+
+    .tech-icons .tech-item img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      border: 2px solid #ccc;
+      padding: 10px;
+    }
+
+    .tech-item p {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #6c757d;
+    }
+
+    .tech-button {
+      background-color: black;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    /* Hover effect */
+    .btn:hover, .tech-button:hover {
+      background-color: #0047ff;
+      color: white;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-section {
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 20px;
+      }
+
+      .hero-left, .hero-right {
+        max-width: 100%;
+        margin: 0 0 20px 0;
+      }
+
+      .yellow-box {
+        border-radius: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Loading Page -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-logo"></div>
+  </div>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <img src="your_logo.png" alt="Logo" height="60">
+    <div>CALL: +91 9045301702</div>
+  </div>
+
+  <!-- Section 1: Hero -->
+  <section class="hero-section">
+    <div class="hero-left">
+      <h1>Website Design services<br> that Maximize Traffic,<br> Engagement, and Conversion</h1>
+      <p>Improve the communication between your brand and your customers with professionally crafted design and the best practices in web development.</p>
+
+      <div class="features">
+        <div>✅ 100% Mobile Friendly</div>
+        <div>✅ Stunning Design</div>
+        <div>✅ Conversion Friendly Layout</div>
+        <div>✅ Effective Call to Action</div>
+      </div>
+
+      <button class="btn">Get free consultation</button>
+    </div>
+
+    <div class="hero-right">
+      <h3>Let’s Build Your <b>Website!</b></h3>
+      <input type="text" placeholder="Name">
+      <input type="email" placeholder="Email">
+      <input type="text" placeholder="Phone">
+      <textarea rows="4" placeholder="What’s your Project about?"></textarea>
+      <button class="submit-btn">SUBMIT</button>
+    </div>
+  </section>
+
+  <!-- Section 2: Services -->
+  <section class="service-section">
+    <h2>Services We Provide</h2>
+    <p>We cultivate a collaborative bond with our clients, akin to friendship, to ensure optimal solutions.</p>
+    <div class="yellow-box">
+      <div class="service-card">
+        <i class="fas fa-layer-group"></i>
+        <h3>UI/UX</h3>
+        <p>Crafting user-centric UI/UX to drive engagement and growth.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-desktop"></i>
+        <h3>Website Design</h3>
+        <p>Our expertise ensures engaging design and business success.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-code"></i>
+        <h3>Web Development</h3>
+        <p>Stellar web apps where excellence meets ingenuity.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-mobile-alt"></i>
+        <h3>Responsive Design</h3>
+        <p>Seamless user experience across all devices.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Technologies -->
+  <section class="tech-section">
+    <h2><strong>Web Technologies</strong> we love working on</h2>
+    <p>Our engineers work with Node, Angular, React, Laravel, MongoDB, HTML5, PHP, ASP.NET & WordPress.</p>
+
+    <button class="tech-button">Get Started for Free</button>
+  </section>
+
+  <script>
+    // Hide loading page after 3 seconds
+    setTimeout(function() {
+      document.getElementById('loadingOverlay').style.display = 'none';
+    }, 3000); // Hide after 3 seconds
+  </script>
+
+</body>
+</html>
